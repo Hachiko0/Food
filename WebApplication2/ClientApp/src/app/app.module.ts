@@ -7,16 +7,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CreateAccountComponentComponent } from './create-account/create-account-component.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
+    LoginComponent,
     FetchDataComponent,
     CreateAccountComponentComponent
   ],
@@ -26,7 +26,7 @@ import { CreateAccountComponentComponent } from './create-account/create-account
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'login', component: LoginComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'create-account', component: CreateAccountComponentComponent },
     ])

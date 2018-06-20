@@ -7,18 +7,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./create-account-component.component.css']
 })
 export class CreateAccountComponentComponent implements OnInit {
+  model: RegisterAccount = { firstName: null, lastName: null, email: null, age: 0, password: null, confirmPassword: null }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  }
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  onSubmit(ngForm) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    //var model: RegisterAccount = { Password: 'j)K;#3ZU9*^pEMRG', Email: 'krasi@test.com' }
-    //http.post(baseUrl + 'api/account/register', model, httpOptions).subscribe(result => {
-    //  var asdf = result;
-    //  console.log(asdf, 666);
-    //}, error => console.error(error));
+    this.http.post(this.baseUrl + 'api/account/register', this.model, httpOptions).subscribe(result => {
+      console.log(result, 666);
+    }, error => console.error(error));
   }
 
   ngOnInit() {
@@ -26,7 +27,11 @@ export class CreateAccountComponentComponent implements OnInit {
 }
 
 interface RegisterAccount {
-  Email: string,
-  Password: string
+  firstName: string,
+  lastName: string,
+  email: string,
+  age: number
+  password: string,
+  confirmPassword: string
 }
 
