@@ -4,7 +4,8 @@ import { AuthService } from '../authentication/auth.service';
 
 @Component({
   selector: 'app-login-component',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
   model: LoginAccount = { email: "", password: ""}

@@ -13,7 +13,8 @@ export class AuthGuard implements CanActivate {
     }
     alert('You are not authorized to see this page')
     // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    this.router.navigate(['/login']);
+    //this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
     return false;
   }
 }

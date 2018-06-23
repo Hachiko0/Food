@@ -18,7 +18,7 @@ export class AuthService implements OnInit {
 
   register(model) {
     this.http.post(this.baseUrl + 'api/account/register', model, this.httpOptions).subscribe(result => {
-    }, error => console.error(error));
+    }, errorResponse => alert(errorResponse.error));
   }
 
   login(model) {
@@ -27,7 +27,7 @@ export class AuthService implements OnInit {
         sessionStorage.setItem('currentUser', JSON.stringify(user));
         this.router.navigate(['/']);
       }
-    }, error => console.error(error));
+    }, errorResponse => alert(errorResponse.error));
   }
 
   isLoggedIn() {

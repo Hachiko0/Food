@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication1.Data;
@@ -31,6 +32,7 @@ namespace WebApplication2.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
+            string errors = string.Empty;
             if (ModelState.IsValid)
             {
                 var user = new User { UserName = model.Username, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, Age = model.Age };
@@ -46,9 +48,13 @@ namespace WebApplication2.Controllers
 
                     return Ok();
                 }
+                else
+                {
+                    errors = string.Join(string.Empty, result.Errors.Select(s => s.Description));
+                }
             }
 
-            return NotFound();
+            return NotFound(errors);
         }
 
         [AllowAnonymous]
@@ -85,7 +91,7 @@ namespace WebApplication2.Controllers
                 }
             }
 
-            return BadRequest("Could not create token");
+            return BadRequest("Wrong credentials");
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
